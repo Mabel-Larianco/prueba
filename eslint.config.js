@@ -30,6 +30,15 @@ export default [
     },
   },
 
+  // Keep the shared TypeScript formatting convention enforceable without a formatter dependency.
+  {
+    files: ["**/*.ts", "**/*.astro"],
+    rules: {
+      semi: ["error", "always"],
+      quotes: ["error", "single", { avoidEscape: true }],
+    },
+  },
+
   // Astro files
   ...eslintPluginAstro.configs.recommended,
 

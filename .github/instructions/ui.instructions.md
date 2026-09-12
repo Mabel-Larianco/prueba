@@ -49,7 +49,13 @@ Refer to technology-specific instruction files:
 - Create reusable components for common UI patterns
 - Keep components focused on a single responsibility
 - Use props for configuration, not duplication
-- Document component APIs with TypeScript types
+- Document component APIs with a `Props` interface in the Astro frontmatter. Describe the component and each prop, including optional values and defaults.
+
+### Comments and documentation
+
+- Explain why a UI decision, accessibility workaround, or interaction constraint exists.
+- Do not use comments to restate markup, class names, or obvious event-handler behavior.
+- Keep component contract documentation current when the props or rendered behavior changes.
 
 ## Development Workflow
 

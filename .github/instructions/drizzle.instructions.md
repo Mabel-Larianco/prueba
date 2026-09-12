@@ -55,6 +55,28 @@ export async function getAllGameIds(db: Database): Promise<number[]> {
 - Map raw rows to the app-facing `Game`/`Publisher`/`Category` types in one place; don't leak Drizzle row shapes into components.
 - Keep ordering/lookup logic in `games.ts`, not in pages.
 
+### Exported function documentation
+
+Every exported function in `db/` and `src/lib/` must have a TSDoc/JSDoc comment. Document:
+
+- The function's purpose and any non-obvious data or ordering decisions.
+- Every parameter with `@param`, including the injectable `db` argument and its testability role.
+- The return value with `@returns`, including whether it can be `null` or an empty collection.
+
+Keep documentation focused on the public contract and intent rather than restating the implementation. Update or remove comments whenever the related behavior changes.
+
+```ts
+/**
+ * Returns games in stable title order for deterministic static builds.
+ *
+ * @param db - Injectable Drizzle database client used by pages and tests.
+ * @returns Games mapped to the app-facing type.
+ */
+export async function getAllGames(db: Database): Promise<Game[]> {
+  // …
+}
+```
+
 ## Determinism
 
 Seed-derived values must be reproducible across builds. Derive star ratings from a stable hash of the title (`ratingFromTitle`) — **never** `Math.random()`.
